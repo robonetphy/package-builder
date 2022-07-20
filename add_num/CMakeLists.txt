@@ -3,33 +3,31 @@ cmake_minimum_required(VERSION 3.10.2)
 include(GNUInstallDirs)
 project(addnum VERSION 1.0.1 DESCRIPTION "add two number")
 
-add_library(addnum SHARED src/add_num.cpp)
+add_library(${CMAKE_PROJECT_NAME} SHARED src/add_num.cpp)
 
-set_target_properties(addnum PROPERTIES
+set_target_properties(${CMAKE_PROJECT_NAME} PROPERTIES
     VERSION ${PROJECT_VERSION}
-
-    # SOVERSION 1
     PUBLIC_HEADER include/add_num.h)
 
-target_include_directories(addnum PRIVATE include)
+target_include_directories(${CMAKE_PROJECT_NAME} PRIVATE include)
 
-install(TARGETS addnum
+install(TARGETS ${CMAKE_PROJECT_NAME}
     LIBRARY DESTINATION ${CMAKE_INSTALL_LIBDIR}
     PUBLIC_HEADER DESTINATION ${CMAKE_INSTALL_INCLUDEDIR})
 
 project(mulnum VERSION 2.0.1 DESCRIPTION "mul two number")
 
-add_library(mulnum SHARED src/mul_num.cpp)
+add_library(${CMAKE_PROJECT_NAME} SHARED src/mul_num.cpp)
 
-set_target_properties(mulnum PROPERTIES
+set_target_properties(${CMAKE_PROJECT_NAME} PROPERTIES
     VERSION ${PROJECT_VERSION}
 
     # SOVERSION 1
     PUBLIC_HEADER include/mul_num.h)
 
-target_include_directories(mulnum PRIVATE include)
+target_include_directories(${CMAKE_PROJECT_NAME} PRIVATE include)
 
-install(TARGETS mulnum
+install(TARGETS ${CMAKE_PROJECT_NAME}
     LIBRARY DESTINATION ${CMAKE_INSTALL_LIBDIR}
     PUBLIC_HEADER DESTINATION ${CMAKE_INSTALL_INCLUDEDIR})
 

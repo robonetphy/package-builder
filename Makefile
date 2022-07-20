@@ -4,16 +4,13 @@ add_num=1
 SUB_FOLDER=sub_num
 ADD_FOLDER=add_num
 
-# ifeq ($(LIBSO), 1)
-# endif
-
 
 MYDIR = .
 install:$(MYDIR)/*
 	@for a in $^; do \
       if [ "$$a" =  ${SUB_FOLDER} ]; then \
 		if [ ${${SUB_FOLDER}} = 1 ]; then \
-			echo "Installing the ${SUB_FOLDER}." ; \
+			echo "\033[1;33m Installing the ${SUB_FOLDER}.\033[0m" ; \
 			mkdir -p $(MYDIR)/${SUB_FOLDER}/build; \
 			cd $(MYDIR)/${SUB_FOLDER}/build; \
 			cmake ..; \
@@ -23,7 +20,7 @@ install:$(MYDIR)/*
 	  fi; \
       if [ "$$a" =  ${ADD_FOLDER} ]; then \
 		if [ ${${ADD_FOLDER}} = 1 ]; then \
-			echo "Installing the ${ADD_FOLDER}." ; \
+			echo "\033[1;33m Installing the ${ADD_FOLDER}.\033[0m" ; \
 			mkdir -p $(MYDIR)/${ADD_FOLDER}/build; \
 			cd $(MYDIR)/${ADD_FOLDER}/build; \
 	  		cmake ..; \
@@ -38,7 +35,7 @@ uninstall:$(MYDIR)/*
 	@for a in $^; do \
       if [ "$$a" =  ${SUB_FOLDER} ]; then \
 		if [ ${${SUB_FOLDER}} = 1 ]; then \
-			echo "Uninstalling the ${SUB_FOLDER}." ; \
+			echo "\033[1;31 Uninstalling the ${SUB_FOLDER}.\033[0m" ; \
 			cd $(MYDIR)/${SUB_FOLDER}/build; \
 			make uninstall; \
 			rm -rfv $(MYDIR)/${SUB_FOLDER}/build; \
@@ -47,7 +44,7 @@ uninstall:$(MYDIR)/*
 	  fi; \
       if [ "$$a" =  ${ADD_FOLDER} ]; then \
 		if [ ${${ADD_FOLDER}} = 1 ]; then \
-			echo "Uninstalling the ${ADD_FOLDER}." ; \
+			echo "\033[1;31 Uninstalling the ${ADD_FOLDER}.\033[0m" ; \
 			cd $(MYDIR)/${ADD_FOLDER}/build; \
 			make uninstall; \
 			rm -rfv $(MYDIR)/${ADD_FOLDER}/build; \
